@@ -1,0 +1,377 @@
+    :root {
+      /* Palette */
+      --bg: #09090b;
+      --surface: #131316;
+      --surface-hover: #1c1c21;
+      --primary: #e11d48;
+      --text-heading: #fafafa;
+      --text-body: #a1a1aa;
+      --text-muted: #71717a;
+      
+      /* Typography */
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Manrope', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Layout & Spacing */
+      --spine-left: 8vw;
+      --container-pl: calc(var(--spine-left) + 4rem);
+      --container-pr: 8vw;
+      
+      /* Animation */
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-slow: 600ms var(--ease);
+      --transition-med: 420ms var(--ease);
+      --transition-fast: 250ms var(--ease);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-body);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--surface-hover);
+      border-radius: 3px;
+    }
+
+    /* Typography Utilities */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--text-heading);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    /* Signature Element: The Spine */
+    .spine {
+      position: fixed;
+      top: 0;
+      left: var(--spine-left);
+      width: 1px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, var(--surface-hover), transparent);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .spine-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: var(--primary);
+      transition: height 0.1s linear;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 2rem var(--container-pr) 2rem var(--container-pl);
+      display: flex;
+      justify-content: flex-end;
+      z-index: 100;
+      mix-blend-mode: difference;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-heading);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width var(--transition-med);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Layout Container */
+    section {
+      padding: 2rem var(--container-pr) 2rem var(--container-pl);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .section-num {
+      position: absolute;
+      left: calc(var(--spine-left) - 3rem);
+      top: 8rem;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: var(--text-muted);
+    }
+
+    /* Reveal Animation Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggering for Hero */
+    .stagger-1 { transition-delay: 100ms; }
+    .stagger-2 { transition-delay: 200ms; }
+    .stagger-3 { transition-delay: 300ms; }
+
+    /* SECTION: Hero */
+    .hero-heading {
+      font-size: clamp(3rem, 6vw, 5rem);
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-heading em {
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+      color: var(--text-body);
+    }
+
+    .initial-btn {
+      display: flex;      
+      gap: 1.5rem;         
+      flex-wrap: wrap;  
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-heading);
+      border: 1px solid var(--surface-hover);
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      transition: all var(--transition-med);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover {
+      border-color: var(--primary);
+      background: rgba(225, 29, 72, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* SECTION: About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-text p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* SECTION: Skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .skill-cluster h3 {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--surface-hover);
+      padding: 0.5rem 1rem;
+      border-radius: 2px;
+      font-size: 0.9rem;
+      color: var(--text-heading);
+      transition: all var(--transition-fast);
+    }
+
+    .tag:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* SECTION: Projects */
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      padding: 3rem;
+      border-left: 2px solid transparent;
+      transition: all var(--transition-med);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-decoration: none;
+    }
+
+    .project-card:hover {
+      border-left-color: var(--primary);
+      transform: translateX(8px);
+      background: var(--surface-hover);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .project-title {
+      font-size: 2rem;
+    }
+
+    /* SECTION: Open Source */
+    .os-card {
+      background: var(--surface);
+      padding: 3rem;
+      border: 1px solid var(--surface-hover);
+      margin-top: 3rem;
+      max-width: 800px;
+    }
+
+    /* SECTION: Contact */
+    .contact-wrapper {
+      max-width: 600px;
+    }
+
+    .contact-heading {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .social-link {
+      font-size: 1.125rem;
+      color: var(--text-heading);
+      border-bottom: 1px solid var(--surface-hover);
+      padding-bottom: 0.25rem;
+      transition: border-color var(--transition-med);
+    }
+
+    .social-link:hover {
+      border-color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      :root {
+        --spine-left: 20px;
+        --container-pl: 60px;
+        --container-pr: 20px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2 rem;
+      }
+      .hero-heading {
+        font-size: 2.5rem;
+      }
+      nav {
+        justify-content: center;
+        background: rgba(9, 9, 11, 0.9);
+        padding: 1.5rem;
+      }
+      .section-num {
+        display: none;
+      }
+      .project-card {
+        padding: 1.5rem;
+      }
+    }

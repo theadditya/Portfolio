@@ -1,11 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Additya Pramanik | Software Developer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
+
 </head>
 <body>
+
+
+  <div class="spine">
+    <div class="spine-progress" id="progressBar"></div>
+  </div>
+
+  <nav>
+    <div class="nav-links">
+      <a href="#about" class="mono">About</a>
+      <a href="#projects" class="mono">Work</a>
+      <a href="#contact" class="mono">Contact</a>
+    </div>
+  </nav>
+
+
+  <section id="hero">
+    <div class="section-num mono reveal stagger-1">00</div>
+    <h1 class="hero-heading reveal stagger-1">Bridging code, systems, and <em>human impact.</em></h1>
+    <p class="hero-sub reveal stagger-2">Always prioritize the things you love to do before anything.</p>
+    <div class="initial-btn reveal stagger-3">
+      <a href="#projects" class="cta-btn mono">
+        View My Work 
+        <span>→</span>
+      </a>
+      <a href="https://drive.google.com/file/d/1oGe6iJUio2HS6JxBaBnQFTJy7DiMBgRu/view?usp=drive_link" class="cta-btn mono">
+        Rsume
+        <span>→</span>
+      </a>
+  </section>
+
+
+  <section id="about">
+    <div class="section-num mono reveal">01</div>
+    <div class="about-grid">
+      <h2 class="section-title reveal">Deliberate engineering.</h2>
+      <div class="about-text reveal">
+        <p>Full-stack developer and IT student specializing in scalable web apps and social impact projects using Flask, JavaScript, and C++.</p>
+      </div>
+    </div>
+
+
+    <div class="skills-container reveal">
+      <div class="skill-cluster">
+        <h3>Core Languages</h3>
+        <div class="skill-tags">
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-cluster">
+        <h3>Web & Data</h3>
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">API Integration</span>
+        </div>
+      </div>
+      <div class="skill-cluster">
+        <h3>Practices</h3>
+        <div class="skill-tags">
+          <span class="tag">Problem-Solving</span>
+          <span class="tag">Cross-functional Teamwork</span>
+          <span class="tag">Technical Communication</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-num mono reveal">02</div>
+    <h2 class="section-title reveal">Selected Work</h2>
+    <div class="projects-grid" id="projectsContainer">
+    </div>
+  </section>
+
+  <section id="open-source">
+    <div class="section-num mono reveal">03</div>
+    <h2 class="section-title reveal">Open Source</h2>
+    <div class="os-card reveal">
+      <h3 class="mono" style="margin-bottom: 1rem; color: var(--text-heading);">AmurotOpenSource</h3>
+      <p style="margin-bottom: 1.5rem;">Initiated open source contribution with friends.</p>
+      <a href="https://github.com/BinaryBhaskar/AmurotOpenSource" target="_blank" class="mono" style="color: var(--primary);">View Contributions →</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-num mono reveal">04</div>
+    <div class="contact-wrapper reveal">
+      <h2 class="contact-heading">Let's build something deliberate.</h2>
+      <p>I am always open to exploring new engineering challenges and structural architectures.</p>
+      
+      <div class="social-links">
+        <a href="mailto:addityapramanik@gmail.com" class="social-link mono">Email</a>
+        <a href="https://github.com/theadditya/" target="_blank" class="social-link mono">GitHub</a>
+        <a href="https://linkedin.com/in/theadditya/" target="_blank" class="social-link mono">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // 1. Render Projects
+    const projects = [
+      {
+        name: "Krishi Mitra",
+        description: "AI-driven agricultural ecosystem mapping plant diseases to accessible community marketplaces.",
+        tech: ["Python", "AI/ML", "HTML", "CSS", "Firebase"],
+        link: "https://github.com/theadditya/KrishiMitra.git"
+      },
+      {
+        name: "Nirmal Bharat",
+        description: "Digital marketplace and waste management interface advocating for recycling economies.",
+        tech: ["HTML", "CSS", "Firebase", "API Integration"],
+        link: "https://github.com/theadditya/nirmal-bharat.git"
+      }
+    ];
+
+    const container = document.getElementById('projectsContainer');
     
+    projects.forEach((proj, idx) => {
+      const tagsHtml = proj.tech.map(t => `<span class="tag mono" style="font-size:0.75rem; padding:0.25rem 0.6rem;">${t}</span>`).join('');
+      
+      const card = document.createElement('a');
+      card.href = proj.link;
+      card.target = '_blank';
+      card.className = 'project-card reveal';
+      card.style.transitionDelay = `${idx * 100}ms`;
+      
+      card.innerHTML = `
+        <div class="project-header">
+          <h3 class="project-title">${proj.name}</h3>
+          <span class="mono" style="color: var(--primary);">↗</span>
+        </div>
+        <p>${proj.description}</p>
+        <div class="skill-tags">
+          ${tagsHtml}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    // 2. Scroll Reveal Animation using IntersectionObserver
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Optional: stop observing once revealed
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Trigger hero animations immediately on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('#hero .reveal').forEach(el => {
+        el.classList.add('active');
+      });
+    });
+
+    // 3. Spine Progress Scroll
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.height = scrolled + '%';
+    });
+  </script>
 </body>
 </html>
