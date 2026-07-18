@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Additya Pramanik | Software Developer</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"> 
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
 
@@ -33,10 +37,11 @@
     <p class="hero-sub reveal stagger-2">Always prioritize the things you love to do before anything.</p>
     <div class="initial-btn reveal stagger-3">
       <a href="#projects" class="cta-btn mono">
-        View My Work 
+        View My Work
         <span>→</span>
       </a>
-      <a href="https://drive.google.com/file/d/1oGe6iJUio2HS6JxBaBnQFTJy7DiMBgRu/view?usp=drive_link" class="cta-btn mono">
+      <a href="https://drive.google.com/file/d/1oGe6iJUio2HS6JxBaBnQFTJy7DiMBgRu/view?usp=drive_link"
+        class="cta-btn mono">
         Rsume
         <span>→</span>
       </a>
@@ -48,7 +53,8 @@
     <div class="about-grid">
       <h2 class="section-title reveal">Deliberate engineering.</h2>
       <div class="about-text reveal">
-        <p>Full-stack developer and IT student specializing in scalable web apps and social impact projects using Flask, JavaScript, and C++.</p>
+        <p>Full-stack developer and IT student specializing in scalable web apps and social impact projects using Flask,
+          JavaScript, and C++.</p>
       </div>
     </div>
 
@@ -90,7 +96,7 @@
     </div>
   </section>
 
-  <section id="open-source">
+  <!-- <section id="open-source">
     <div class="section-num mono reveal">03</div>
     <h2 class="section-title reveal">Open Source</h2>
     <div class="os-card reveal">
@@ -98,14 +104,14 @@
       <p style="margin-bottom: 1.5rem;">Initiated open source contribution with friends.</p>
       <a href="https://github.com/BinaryBhaskar/AmurotOpenSource" target="_blank" class="mono" style="color: var(--primary);">View Contributions →</a>
     </div>
-  </section>
+  </section> -->
 
   <section id="contact">
     <div class="section-num mono reveal">04</div>
     <div class="contact-wrapper reveal">
       <h2 class="contact-heading">Let's build something deliberate.</h2>
       <p>I am always open to exploring new engineering challenges and structural architectures.</p>
-      
+
       <div class="social-links">
         <a href="mailto:addityapramanik@gmail.com" class="social-link mono">Email</a>
         <a href="https://github.com/theadditya/" target="_blank" class="social-link mono">GitHub</a>
@@ -132,16 +138,16 @@
     ];
 
     const container = document.getElementById('projectsContainer');
-    
+
     projects.forEach((proj, idx) => {
       const tagsHtml = proj.tech.map(t => `<span class="tag mono" style="font-size:0.75rem; padding:0.25rem 0.6rem;">${t}</span>`).join('');
-      
+
       const card = document.createElement('a');
       card.href = proj.link;
       card.target = '_blank';
       card.className = 'project-card reveal';
       card.style.transitionDelay = `${idx * 100}ms`;
-      
+
       card.innerHTML = `
         <div class="project-header">
           <h3 class="project-title">${proj.name}</h3>
@@ -191,4 +197,5 @@
     });
   </script>
 </body>
+
 </html>
